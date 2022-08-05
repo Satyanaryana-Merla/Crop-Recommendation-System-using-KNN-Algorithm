@@ -31,15 +31,15 @@ It takes input about the Farmer's soil and tells them which Crop would be best f
 
 ### How we built it
 
-We have used a dataset of 2200 entries and trained an ML model on it for making the predictions. We have then used Streamlit library to create a user-friendly and simple UI for anyone to use. It uses Jupyter environment to run.
+We have used a dataset of 2200 entries and trained an ML model on it for making the predictions. We have then used python library's to create a user-friendly and simple UI for anyone to use. It uses python to run.
 
 ### Challenges we ran into
 
-Finding the right dataset, Training the model for high accuracy, Hosting the model as a web-app. 
+Finding the right dataset, Training the model for high accuracy. 
 
 ### Accomplishments that we're proud of
 
-High Accuracy of our ML model (99.54% during validation). Custom UI elements on Streamlit web-app.
+High Accuracy of our ML model more then 95%.
 
 ### What we learned
 
