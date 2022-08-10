@@ -43,7 +43,7 @@ print(crop.shape)                                                               
 
 model = KNeighborsClassifier(n_neighbors=3)                                                                    # The number of neighbors is the core deciding factor. K is generally an odd number if the number of classes is 2. When K=1, then the algorithm is known as the nearest neighbor algorithm.
 model.fit(features, crop)                                                                                      # fit your model on the train set using fit() and perform prediction on the test set using predict().
-layout = [[sg.Text('                      Crop Recommendation Assistant', font=("Helvetica", 30), text_color = 'yellow')],                                                    # Defining the layout of the Graphical User Interface. It consist of some text, Buttons, and blanks to take Input.                                                        
+layout = [[sg.Text('                      Crop Recommendation System', font=("Helvetica", 30), text_color = 'yellow')],                                                    # Defining the layout of the Graphical User Interface. It consist of some text, Buttons, and blanks to take Input.                                                        
          [sg.Text('Please enter the following details :-', font=("Helvetica", 20))],                                                                                          # We have defined the text size, font type, font size, blank size, colour of the text in the GUI.
          [sg.Text('Enter ratio of Nitrogen in the soil                                  :', font=("Helvetica", 20)), sg.Input(font=("Helvetica",20), size = (20,1) )],
          [sg.Text('Enter ratio of Phosphorous in the soil                           :', font=("Helvetica", 20)), sg.Input(font=("Helvetica", 20),size = (20,1))],
@@ -54,20 +54,21 @@ layout = [[sg.Text('                      Crop Recommendation Assistant', font=(
          [sg.Text('Enter average amount of Rainfall around the field        :', font=("Helvetica", 20) ), sg.Input(font=("Helvetica", 20),size = (20,1)),sg.Text('mm', font=("Helvetica", 20))],
          [sg.Text(size=(50,1),font=("Helvetica",20) , text_color = 'yellow', key='-OUTPUT1-' )],
          [sg.Button('Submit', font=("Helvetica", 20)),sg.Button('Quit', font=("Helvetica", 20))] ]
-window = sg.Window('Crop Recommendation Assistant', layout) 
+window = sg.Window('Crop Recommendation System', layout) 
 
 while True: 
 	event, values = window.read()
 	if event == sg.WINDOW_CLOSED or event == 'Quit':                                                                                            # If the user will press the quit button then the program will end up.
 		break
 	print(values[0])
-	nitrogen_content =         values[0]                                                                                                        # Taking input from the user about nitrogen content in the soil.
-	phosphorus_content =       values[1]                                                                                                        # Taking input from the user about phosphorus content in the soil.
-	potassium_content =        values[2]                                                                                                        # Taking input from the user about potassium content in the soil.
-	temperature_content =      values[3]                                                                                                        # Taking input from the user about the surrounding temperature.
-	humidity_content =         values[4]                                                                                                        # Taking input from the user about the surrounding humidity. 
-	ph_content =               values[5]                                                                                                        # Taking input from the user about the ph level of the soil.
-	rainfall =                 values[6]                                                                                                        # Taking input from the user about the rainfall.
+	nitrogen_content =         int(values[0])
+	print(type(nitrogen_content))                                                                                                   # Taking input from the user about nitrogen content in the soil.
+	phosphorus_content =       int(values[1])                                                                                                        # Taking input from the user about phosphorus content in the soil.
+	potassium_content =        int(values[2])                                                                                                    # Taking input from the user about potassium content in the soil.
+	temperature_content =      float(values[3])                                                                                                      # Taking input from the user about the surrounding temperature.
+	humidity_content =         float(values[4])                                                                                                   # Taking input from the user about the surrounding humidity. 
+	ph_content =               float(values[5])                                                                                                   # Taking input from the user about the ph level of the soil.
+	rainfall =                 int(values[6])                                                                                                    # Taking input from the user about the rainfall.
 	predict1 = np.array([nitrogen_content,phosphorus_content, potassium_content, temperature_content, humidity_content, ph_content, rainfall])  # Converting all the data that we collected from the user into a array form to make further predictions.
 	print(predict1)                                                                                                                             # Printing the data after being converted into a array form.
 	predict1 = predict1.reshape(1,-1)                                                                              # Reshaping the input data so that it can be applied in the model for getting accurate results.
@@ -76,49 +77,49 @@ while True:
 	print(predict1)                                                                                                # Finally printing out the results.
 	crop_name = str()
 	if predict1 == 0:                                                                                              # Above we have converted the crop names into numerical form, so that we can apply the machine learning model easily. Now we have to again change the numerical values into names of crop so that we can print it when required. 
-		crop_name = 'Apple(सेब)'
+		crop_name = 'Apple'
 	elif predict1 == 1:
-		crop_name = 'Banana(केला)'
+		crop_name = 'Banana'
 	elif predict1 == 2:
-		crop_name = 'Blackgram(काला चना)'
+		crop_name = 'Blackgram'
 	elif predict1 == 3:
-		crop_name = 'Chickpea(काबुली चना)'
+		crop_name = 'Chickpea'
 	elif predict1 == 4:
-		crop_name = 'Coconut(नारियल)'
+		crop_name = 'Coconut'
 	elif predict1 == 5:
-		crop_name = 'Coffee(कॉफ़ी)'
+		crop_name = 'Coffee'
 	elif predict1 == 6:
-		crop_name = 'Cotton(कपास)'
+		crop_name = 'Cotton'
 	elif predict1 == 7:
-		crop_name = 'Grapes(अंगूर)'
+		crop_name = 'Grapes'
 	elif predict1 == 8:
-		crop_name = 'Jute(जूट)'
+		crop_name = 'Jute'
 	elif predict1 == 9:
-		crop_name = 'Kidneybeans(राज़में)'
+		crop_name = 'Kidneybeans'
 	elif predict1 == 10:
-		crop_name = 'Lentil(मसूर की दाल)'
+		crop_name = 'Lentil'
 	elif predict1 == 11:
-		crop_name = 'Maize(मक्का)'
+		crop_name = 'Maize'
 	elif predict1 == 12:
-		crop_name = 'Mango(आम)'
+		crop_name = 'Mango'
 	elif predict1 == 13:
-		crop_name = 'Mothbeans(मोठबीन)'
+		crop_name = 'Mothbeans'
 	elif predict1 == 14:
-		crop_name = 'Mungbeans(मूंग)'
+		crop_name = 'Mungbeans'
 	elif predict1 == 15:
-		crop_name = 'Muskmelon(खरबूजा)'
+		crop_name = 'Muskmelon'
 	elif predict1 == 16:
-		crop_name = 'Orange(संतरा)'
+		crop_name = 'Orange'
 	elif predict1 == 17:
-		crop_name = 'Papaya(पपीता)'
+		crop_name = 'Papaya'
 	elif predict1 == 18:
-		crop_name = 'Pigeonpeas(कबूतर के मटर)'
+		crop_name = 'Pigeonpeas'
 	elif predict1 == 19:
-		crop_name = 'Pomegranate(अनार)'
+		crop_name = 'Pomegranate'
 	elif predict1 == 20:
-		crop_name = 'Rice(चावल)'
+		crop_name = 'Rice'
 	elif predict1 == 21:
-		crop_name = 'Watermelon(तरबूज)'
+		crop_name = 'Watermelon'
 
 	if int(humidity_content) >=1 and int(humidity_content)<= 33 :                                                # Here I have divided the humidity values into three categories i.e low humid, medium humid, high humid.
 		humidity_level = 'low humid'
